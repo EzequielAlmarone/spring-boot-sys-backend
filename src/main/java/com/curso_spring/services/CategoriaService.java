@@ -20,4 +20,9 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new com.curso_spring.services.exceptions.ObjectNotFoundException(
 				"Objeto não encontrado! ID: " + id + ",  Endereço Classe: " + Categoria.class.getName())); 
 	}
+
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
 }
