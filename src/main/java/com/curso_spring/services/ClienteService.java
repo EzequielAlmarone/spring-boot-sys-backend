@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.curso_spring.domain.Cidade;
 import com.curso_spring.domain.Cliente;
 import com.curso_spring.domain.Endereco;
+import com.curso_spring.domain.dto.ClienteDTO;
 import com.curso_spring.domain.dto.ClienteNewDTO;
 import com.curso_spring.domain.enums.TipoCliente;
 import com.curso_spring.repositories.ClienteRepository;
@@ -68,6 +69,10 @@ public class ClienteService {
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Cliente fromDTO(ClienteDTO objDto) {
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null);
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {
